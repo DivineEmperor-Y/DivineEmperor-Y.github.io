@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>帝君经历档案 · 外部阅读版</title>
+<style>
+  :root{
+    --ink:#17161a;
+    --ink2:#3d3a42;
+    --muted:#8a8792;
+    --paper:#faf8f5;
+    --card:#ffffff;
+    --line:#ebe7e1;
+    --line2:#ddd8d0;
+    --gold:#b8873a;
+    --gold-soft:#f5ede0;
+    --red:#a8392f;
+    --red-soft:#fbeae8;
+    --blue:#3a5a8c;
+    --blue-soft:#eef2f8;
+    --shadow:0 1px 3px rgba(23,22,26,.05),0 12px 32px -12px rgba(23,22,26,.12);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Songti SC","Noto Serif SC",Georgia,"Source Han Serif SC",serif;
+    line-height:1.85; -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:1240px; margin:0 auto; padding:0 24px}
+
+  /* ============ 页头 ============ */
+  .hero{
+    position:relative; padding:64px 24px 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{max-width:1240px; margin:0 auto; position:relative}
+  .hero .kicker{
+    font-size:12px; letter-spacing:.5em;
+    color:var(--gold); text-transform:uppercase; margin-bottom:22px;
+  }
+  .hero h1{
+    margin:0; font-size:clamp(34px,5.4vw,58px); font-weight:600;
+    letter-spacing:-.01em; line-height:1.14; color:var(--ink);
+  }
+  .hero h1 .accent{color:var(--gold)}
+  .hero .lede{
+    margin:22px 0 0; max-width:660px; color:var(--ink2);
+    font-size:16.5px; line-height:1.9;
+  }
+  .hero .stamp{
+    position:absolute; right:0; top:-6px; text-align:right;
+    font-size:12px; color:var(--muted); letter-spacing:.08em; line-height:1.9;
+  }
+  .hero .notice{
+    margin-top:38px; max-width:760px; padding:16px 22px;
+    background:var(--gold-soft); border-left:3px solid var(--gold);
+    border-radius:0 10px 10px 0; font-size:13.5px; color:#6b5a3c; line-height:1.85;
+  }
+
+  /* ============ 布局 ============ */
+  .layout{
+    max-width:1240px; margin:0 auto; padding:56px 24px 100px;
+    display:grid; grid-template-columns:216px 1fr; gap:64px;
+    align-items:start;
+  }
+  .toc{position:sticky; top:32px}
+  .toc .toc-title{
+    font-size:11px; letter-spacing:.3em; color:var(--muted);
+    text-transform:uppercase; margin-bottom:20px; padding-bottom:14px;
+    border-bottom:1px solid var(--line2);
+  }
+  .toc ol{list-style:none; margin:0; padding:0; counter-reset:toc}
+  .toc li{counter-increment:toc; margin:0 0 2px}
+  .toc a{
+    display:flex; gap:12px; padding:7px 0; color:var(--ink2);
+    text-decoration:none; font-size:14px; line-height:1.6;
+    transition:color .2s ease;
+  }
+  .toc a:before{
+    content:counter(toc,decimal-leading-zero);
+    font-size:11px; color:var(--muted); font-family:Georgia,serif;
+    letter-spacing:.05em; padding-top:2px;
+  }
+  .toc a:hover{color:var(--gold)}
+  .toc .foot{
+    margin-top:28px; padding-top:20px; border-top:1px solid var(--line2);
+    font-size:12px; color:var(--muted); line-height:1.9;
+  }
+
+  main{min-width:0}
+  .block{margin:0 0 78px; scroll-margin-top:28px}
+  .block:last-child{margin-bottom:0}
+  .block-head{margin-bottom:34px}
+  .block-head .eyebrow{
+    font-size:11px; letter-spacing:.3em; color:var(--gold);
+    text-transform:uppercase; margin-bottom:12px;
+  }
+  .block-head h2{
+    margin:0; font-size:28px; font-weight:600; letter-spacing:-.01em;
+    line-height:1.3; color:var(--ink);
+  }
+  .block-head .note{
+    margin:14px 0 0; font-size:14px; color:var(--muted); max-width:640px;
+  }
+
+  p{margin:0 0 16px; font-size:15.5px; line-height:1.9; color:var(--ink2)}
+  p:last-child{margin-bottom:0}
+  strong{color:var(--ink); font-weight:600}
+  .hl{color:var(--gold); font-weight:600}
+
+  /* ============ 术语卡 ============ */
+  .glossary{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    border-radius:14px; overflow:hidden;
+  }
+  .glossary .g{
+    background:var(--card); padding:22px 24px;
+  }
+  .glossary .g .term{
+    font-size:15px; font-weight:600; color:var(--ink); margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .glossary .g .term:before{
+    content:""; width:6px; height:6px; background:var(--gold); border-radius:50%;
+    flex:none;
+  }
+  .glossary .g .def{
+    font-size:13.5px; color:var(--ink2); line-height:1.85; margin:0;
+  }
+
+  /* ============ 数据条 ============ */
+  .facts{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    border-radius:14px; overflow:hidden; margin:30px 0 6px;
+  }
+  .facts .f{background:var(--card); padding:20px 22px}
+  .facts .f .n{
+    font-family:Georgia,serif; font-size:28px; font-weight:600;
+    color:var(--ink); line-height:1; letter-spacing:-.02em;
+  }
+  .facts .f .n .u{font-size:14px; color:var(--muted); margin-left:3px}
+  .facts .f .l{font-size:12.5px; color:var(--muted); margin-top:9px}
+
+  /* ============ 引言 / 争议 ============ */
+  .pull{
+    border-left:2px solid var(--gold); padding:4px 0 4px 22px;
+    margin:28px 0; color:var(--ink2); font-size:15px; line-height:1.9;
+  }
+  .dispute{
+    background:var(--red-soft); border:1px solid #f2d9d5;
+    border-left:3px solid var(--red); border-radius:0 12px 12px 0;
+    padding:20px 24px; margin:24px 0;
+  }
+  .dispute .label{
+    font-size:11px; letter-spacing:.2em; color:var(--red);
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  .dispute p{font-size:14.5px; color:#5f3530; margin:0}
+
+  /* ============ 时间线 ============ */
+  .tl{margin-top:8px}
+  .tl .row{
+    display:grid; grid-template-columns:136px 1fr; gap:32px;
+    padding:26px 0; border-top:1px solid var(--line);
+  }
+  .tl .row:first-child{border-top:none; padding-top:8px}
+  .tl .when{
+    font-size:14px; color:var(--gold); letter-spacing:.02em;
+    font-weight:600; line-height:1.6; padding-top:1px;
+  }
+  .tl .when .sub{display:block; font-size:12px; color:var(--muted); font-weight:400; margin-top:2px}
+  .tl .what h3{
+    margin:0 0 8px; font-size:16.5px; font-weight:600;
+    color:var(--ink); line-height:1.5;
+  }
+  .tl .what h3.tagline:after{
+    content:""; display:inline-block; width:5px; height:5px; margin-left:10px;
+    background:var(--gold); border-radius:50%; vertical-align:middle;
+  }
+  .tl .what p{font-size:14.5px; margin-bottom:10px}
+  .tl .what ul{margin:10px 0 0; padding-left:18px}
+  .tl .what li{font-size:14.5px; margin:6px 0; color:var(--ink2)}
+
+  /* ============ 人物代号 ============ */
+  .roster{margin-top:8px}
+  .roster .p{
+    display:grid; grid-template-columns:160px 1fr; gap:24px;
+    padding:18px 0; border-top:1px solid var(--line);
+  }
+  .roster .p:first-child{border-top:none; padding-top:4px}
+  .roster .p:last-child{padding-bottom:0}
+  .roster .who .name{font-size:15px; font-weight:600; color:var(--ink)}
+  .roster .who .aka{font-size:12px; color:var(--muted); margin-top:3px; line-height:1.7}
+  .roster .desc{font-size:14px; color:var(--ink2); line-height:1.85}
+
+  /* ============ 专题 ============ */
+  .topics{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:8px}
+  .topic{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:26px 28px; box-shadow:var(--shadow);
+  }
+  .topic .no{
+    font-family:Georgia,serif; font-size:13px;
+    color:var(--gold); letter-spacing:.16em; margin-bottom:12px;
+  }
+  .topic h3{margin:0 0 14px; font-size:17px; font-weight:600; line-height:1.5; color:var(--ink)}
+  .topic p{font-size:14px; margin-bottom:12px}
+  .topic ul{margin:10px 0 0; padding-left:18px}
+  .topic li{font-size:14px; margin:5px 0; color:var(--ink2)}
+
+  .card{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:26px 28px; box-shadow:var(--shadow);
+  }
+
+  .colophon{
+    max-width:1240px; margin:0 auto; padding:40px 24px 70px;
+    border-top:1px solid var(--line2); text-align:center;
+    font-size:12.5px; color:var(--muted); line-height:2; letter-spacing:.02em;
+  }
+  .colophon .diamond{color:var(--gold); margin:0 8px}
+
+  @media(max-width:900px){
+    .layout{grid-template-columns:1fr; gap:0; padding-top:36px}
+    .toc{
+      position:static; margin-bottom:44px; padding-bottom:28px;
+      border-bottom:1px solid var(--line2);
+    }
+    .toc ol{columns:2; column-gap:24px}
+    .toc .foot{display:none}
+    .topics{grid-template-columns:1fr}
+    .tl .row{grid-template-columns:1fr; gap:10px}
+    .tl .when{display:flex; gap:10px; align-items:baseline}
+    .roster .p{grid-template-columns:1fr; gap:6px}
+  }
+  @media(max-width:560px){
+    .hero{padding:44px 18px 40px}
+    .layout{padding:32px 18px 70px}
+    .facts{grid-template-columns:1fr 1fr}
+    .toc ol{columns:1}
+    .card{padding:20px}
+    .topic{padding:20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 页头 ============ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="stamp">外部阅读版<br>已隐去真实姓名与联系方式</div>
+    <div class="kicker">Case File · 人物经历</div>
+    <h1>帝君经历档案<span class="accent">.</span></h1>
+    <p class="lede">
+      一份为外部读者整理的人物经历记录。时间跨度从早年背景到 2026 年 9 月，覆盖学业、情感、医疗三条主线。所有人物均以代号指代，私密信息已删除，争议处单独标注。
+    </p>
+    <div class="notice">
+      阅读前请先看「阅读须知与术语表」。文中涉及的性取向、精神疾病、性骚扰争议等内容，均为当事人自述或旁人转述，未经医学或法律认定。请勿据此对现实中的任何个人作出判断。
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- ============ 侧栏导航 ============ -->
+  <aside class="toc">
+    <div class="toc-title">目录</div>
+    <ol>
+      <li><a href="#guide">阅读须知</a></li>
+      <li><a href="#cast">人物代号</a></li>
+      <li><a href="#summary">概述</a></li>
+      <li><a href="#timeline">时间线</a></li>
+      <li><a href="#topics">重要专题</a></li>
+      <li><a href="#status">当前状态</a></li>
+    </ol>
+    <div class="foot">
+      资料截至<br>2026 年 9 月<br><br>
+      仅供外部了解
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- ---------- 阅读须知与术语表 ---------- -->
+    <section class="block" id="guide">
+      <div class="block-head">
+        <div class="eyebrow">Reading Guide</div>
+        <h2>阅读须知与术语表</h2>
+        <p class="note">文中出现的一些词是当事人群体内部的说法，对外部读者不一定直观。先在此集中解释。</p>
+      </div>
+
+      <div class="glossary">
+
+        <div class="g">
+          <div class="term">帝君</div>
+          <p class="def">本文主角的代号。取自旁人对他言行举止的戏称，并非真实姓名或正式称呼。全文统一使用这一代号。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">三关</div>
+          <p class="def">帝君自述中，在夜间对同住者实施的一系列越界行为，他本人将其分为“三关”。据转述，具体内容涉及隔床缝、厕所、以及肢体接触等。<strong>真实性存疑</strong>，详见时间线 2026 年 5 月 30 日条目。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">内裤打</div>
+          <p class="def">“三关”争议中的一项，指帝君自述曾偷取同住者内裤用于自慰。相较于“三关”整体，这一项在转述中被认为可信度较高。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">夺门之变</div>
+          <p class="def">2026 年 5 月 31 日凌晨，帝君试图让旁人开门，让他进入某高校宿舍楼的事件。借用明史典故命名。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">无双</div>
+          <p class="def">帝君自创或反复使用的一个性取向标签，用以描述“无浪漫主义双性恋”。他常以此解释自己与不同对象的关系。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">回避型</div>
+          <p class="def">帝君用来描述“不回他消息、不主动见他”的人的说法。他认为这些人内心其实在意他，只是性格回避。旁人普遍认为这是他的主观解释。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">巨物寿司</div>
+          <p class="def">帝君常去的一家高价寿司店，群内以其价格作为计量单位，形容消费高。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">史官</div>
+          <p class="def">负责记录、整理事件经过的人。本文中特指一次关键通话的记录者，详见人物代号表。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">仙家对话</div>
+          <p class="def">旁人用来形容帝君某些时段发言状态的词。当时他连续发出大量语义跳跃、前后不连贯的消息，外人难以串联理解。</p>
+        </div>
+
+        <div class="g">
+          <div class="term">复学评估</div>
+          <p class="def">因精神健康原因休学后，学校要求通过的一项评估流程，由校方与医院共同确认当事人是否适合恢复学业。</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------- 人物代号 ---------- -->
+    <section class="block" id="cast">
+      <div class="block-head">
+        <div class="eyebrow">Cast</div>
+        <h2>人物代号</h2>
+        <p class="note">所有人物均以代号指代，不使用真实姓名。代号仅用于区分，不含褒贬。</p>
+      </div>
+
+      <div class="roster">
+        <div class="p">
+          <div class="who"><div class="name">帝君</div><div class="aka">本文主角</div></div>
+          <div class="desc">上海某顶尖高中毕业，后进入北京某顶尖高校生物相关方向。2024 年前后确诊抑郁并休学，2026 年 5 月前后转入明显躁狂 / 轻躁状态，此后反复住院、复学评估。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">银客</div><div class="aka">高中同班同学</div></div>
+          <div class="desc">帝君长期暗恋与骚扰的对象。帝君认为银客喜欢自己但不愿承认，并围绕银客产生大量争议行为（见“三关”）。银客多次回避，后期减少联系。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">芋泥</div><div class="aka">2026 年 5 月认识的同学</div></div>
+          <div class="desc">帝君认识约一周后向其表白，被拒。此后帝君坚信芋泥喜欢自己，只是“回避型人格”。旁人普遍认为这属于帝君的主观幻想。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">周郎</div><div class="aka">高中同学</div></div>
+          <div class="desc">帝君口中“最信任、最理解他的人”之一。帝君曾计划专程去找周郎，周郎多次回避。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">谯生 · 杜娘 · 范生</div><div class="aka">高中同学</div></div>
+          <div class="desc">帝君在不同阶段分别认为这几人与自己“三观一致”或属于某种性取向，并频繁与其中数人同时联系。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">帝君父母</div><div class="aka">长期陪护者</div></div>
+          <div class="desc">负责送医、陪护、签字。帝君在病程中多次认为父母“有病”，并试图为父亲预约精神科门诊。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">顾医</div><div class="aka">医学背景的同学</div></div>
+          <div class="desc">帝君最常联系的同学之一，长期承受电话、私信、座机轰炸。后期选择回避、折叠消息、按对方作息时间点赞。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">史官</div><div class="aka">关键通话记录者</div></div>
+          <div class="desc">2026 年 5 月 30 日凌晨，与帝君进行约 9 小时语音通话，记录并转述了“三关”等关键信息。本文多处引用其记录。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">宾老师</div><div class="aka">高中同学，现为教师</div></div>
+          <div class="desc">回到母校任教。2026 年 9 月教师节被帝君到办公室拜访，当场记录并转述了帝君的言论。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">逊哥</div><div class="aka">同学</div></div>
+          <div class="desc">重要信息源，多次提醒银客注意防范。2026 年 5 月 30 日通话时正在打游戏，未参与通话。</div>
+        </div>
+        <div class="p">
+          <div class="who"><div class="name">元哥</div><div class="aka">同学</div></div>
+          <div class="desc">2026 年 5 月 30 日凌晨语音通话参与者之一。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 概述 ---------- -->
+    <section class="block" id="summary">
+      <div class="block-head">
+        <div class="eyebrow">Overview</div>
+        <h2>概述</h2>
+      </div>
+
+      <p>
+        帝君是上海某顶尖高中毕业生，后进入北京某顶尖高校生物相关方向就读。<strong>2024 年秋冬前后确诊抑郁并休学一学期</strong>；<strong>2026 年 5 月前后转入明显躁狂 / 轻躁状态</strong>，此后反复住院、出院、停药、复学评估，并持续通过社交软件高强度联系同学、老师、旧识。
+      </p>
+      <p>
+        其核心长期执念可以概括为三条线：一是对高中同学<span class="hl">银客</span>的长期暗恋与越界行为；二是 2026 年 5 月对认识约一周的<span class="hl">芋泥</span>表白被拒后，坚信对方喜欢自己；三是对<span class="hl">周郎</span>等人的“最信任、最理解”投射。这三条线贯穿整个记录。
+      </p>
+      <p>
+        医疗侧：多次在北京、上海的精神专科医院住院，接受过约 10 次无抽搐电击治疗（MECT），服用过碳酸锂、丙戊酸钠、喹硫平、劳拉西泮等多种药物。曾多次自行停药或减药，随后状态迅速反复。
+      </p>
+
+      <div class="facts">
+        <div class="f"><div class="n">≥5<span class="u">次</span></div><div class="l">住院次数</div></div>
+        <div class="f"><div class="n">≈10<span class="u">次</span></div><div class="l">电击治疗</div></div>
+        <div class="f"><div class="n">≥2<span class="u">次</span></div><div class="l">自行停药</div></div>
+        <div class="f"><div class="n">2026.09</div><div class="l">复学评估</div></div>
+      </div>
+
+      <div class="dispute" style="margin-top:34px">
+        <div class="label">争议 · 抑郁病因</div>
+        <p>帝君对外称抑郁源于学业与科研压力，但周围同学多认为核心是性取向与银客的关系。2026 年病程中，他对芋泥、周郎的执念也反复出现。医学诊断无法从聊天记录确认。</p>
+      </div>
+
+      <div class="dispute">
+        <div class="label">争议 · 性取向</div>
+        <p>帝君先后用同性恋、双性恋、无浪漫主义双性恋、无性恋、智性恋等标签描述自己。旁人对此有不同判断，均非专业意见。</p>
+      </div>
+    </section>
+
+    <!-- ---------- 时间线 ---------- -->
+    <section class="block" id="timeline">
+      <div class="block-head">
+        <div class="eyebrow">Chronology</div>
+        <h2>时间线</h2>
+      </div>
+
+      <div class="tl">
+
+        <div class="row">
+          <div class="when">早年 – 2022<span class="sub">求学背景</span></div>
+          <div class="what">
+            <p>上海某顶尖高中毕业。高中军训期间，帝君自述喜欢范生和银客。2022 年进入北京某顶尖高校生物相关方向。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2023.2<span class="sub">关系转折</span></div>
+          <div class="what">
+            <p>银客刚结束一段感情，帝君认为“可以试试”，此后对银客的执念加深。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2023.7 – 8<span class="sub">首次日本行</span></div>
+          <div class="what">
+            <p>第一次多人日本行。帝君以“都打音游”为由，安排自己与银客同住双人房，其他人住三人房。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2024.6 前后<span class="sub">坦白</span></div>
+          <div class="what">
+            <p>银客直接问帝君“你是不是喜欢我”，帝君随后坦白。此前银客已有所察觉并开始回避。同年 7 月日本行仍然同行。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2024.9 – 10<span class="sub">抑郁休学</span></div>
+          <div class="what">
+            <p>抑郁确诊并休学一学期。此后进入约一年的沉寂期。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2025 – 2026.2<span class="sub">恢复期</span></div>
+          <div class="what">
+            <p>期间与父母多次赴日本旅行。整体处于抑郁后恢复期，状态相对平稳。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.5.30 凌晨<span class="sub">三关入群</span></div>
+          <div class="what">
+            <h3 class="tagline">“三关”信息进入群聊的节点</h3>
+            <p>帝君拉着史官、元哥等人进行长时间语音通话，持续约 9 小时，直至次日凌晨。通话中，帝君向史官转述了大量旧事，其中包括对银客的“三关”等越界行为。这些内容由史官记录、转述，成为后续讨论“三关”的主要来源。逊哥当时正在打游戏，被打电话后并未参与通话。</p>
+            <div class="dispute">
+              <div class="label">争议 · 三关</div>
+              <p>“三关”的具体行为（隔床缝、厕所、沾到嘴等）真实性存疑，时间线也不统一，可能指向不同年份的日本行。顾医认为“三关为编，内裤打绝对真”；银客本人拒绝讨论。整体判断：三关细节可信度低，内裤打可信度中高，具体发生哪次日本行无法完全确认。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.5.31<span class="sub">夺门与表白</span></div>
+          <div class="what">
+            <h3 class="tagline">夺门之变与表白</h3>
+            <p>凌晨，帝君试图让旁人开门，让他进入某高校宿舍楼。中午前后，帝君与芋泥在咖啡馆吃饭并表白，被拒。此前旁人建议“先别表白”，但帝君仍当场表白。此后他坚信芋泥喜欢自己，只是“回避型人格”。</p>
+            <div class="dispute">
+              <div class="label">争议 · 芋泥</div>
+              <p>顾医、罗哥等多人认为“芋泥喜欢帝君”是帝君的主观幻想，芋泥并非同性恋，也未回应其情感。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.6<span class="sub">首次住院</span></div>
+          <div class="what">
+            <p>6 月初被父母与急救人员送往北京某精神专科医院，手机被收。此后在北京某精神专科医院自愿住院，其间多次用医院固定电话、病友电话向外发消息，不认为自己生病，强烈要求出院。同月下旬出院。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.6 下旬 – 7 月上旬<span class="sub">高频骚扰期</span></div>
+          <div class="what">
+            <p>出院后进入高频社交与骚扰阶段：</p>
+            <ul>
+              <li>联系宾老师，称自己住在某高校附近酒店的双床房，找人同住，房费由他承担。</li>
+              <li>穿另一所高校的学士服，到宾老师任教的学校拍照，并将群名改为“互助会”。</li>
+              <li>回母校、约见老师，继续高强度输出与母校相关的话题。</li>
+              <li>赴某大型漫展，穿高校校服，自称“所有人都认识他”；同时已买好前往巴黎的机票。</li>
+              <li>在漫展现场多次闯卡被强制带离，进入派出所后吹空调一小时；当晚称“天空颜色适合跳楼”。</li>
+              <li>坐高铁商务座回上海，途中发出“我看到你了”“这里都是人类”“有票有票都是无票”等语句。</li>
+              <li>父母带其看医生，其母称“状态很不好，不用理他”。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.7 中旬 – 下旬<span class="sub">上海住院</span></div>
+          <div class="what">
+            <p>入住上海某精神卫生中心。其间曾拿到手机约 1 小时，称住院“很好玩”“你绑我我绑你”。随后在社交平台发布“我是医生”等内容。7 月下旬转入 VIP 病房，父母 24 小时陪护，全天可用手机。视频通话中称日本行程照旧，准备申请公共卫生或心理学博士，计划在日本千叶买房、接父母过去。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.8 上旬<span class="sub">日本行落空</span></div>
+          <div class="what">
+            <p>反复计划日本行，多次宣称具体航班与日期。8 月中旬实际未能成行，父母不签字，机票退回，只能请假出院在市区转一圈。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.8 中旬 – 下旬<span class="sub">状态碎片化</span></div>
+          <div class="what">
+            <ul>
+              <li><strong>8 月中旬</strong> — 称地铁吵、怀念日本；争取出院；穿 cos 服；向病友科普某游戏公司作品。</li>
+              <li><strong>8 月中旬</strong> — 前往杭州西湖；称准备复学评估；说某位老师其实记得他，自己是“真正的天才”；表示想切除前额叶。</li>
+              <li><strong>8 月中下旬</strong> — 出院；处理旧手机；提到某医院。</li>
+              <li><strong>8 月中下旬</strong> — 七夕与父亲吃饭，出现手抖，坐商务座回去看专家门诊。</li>
+              <li><strong>8 月下旬某日</strong> — 在群聊中连续发出大量不连贯消息，谈到童话作家、夏季大三角等，前后语义跳跃、难以串联，旁人将此状态形容为“仙家对话”。</li>
+              <li><strong>次日</strong> — 旁人将其病情阶段标记为“第四阶段”。此前他已多次进出上海某精神卫生中心，即旁人所说的“三进三出”。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.8 月末<span class="sub">再次住院</span></div>
+          <div class="what">
+            <p>再次住院，数日后出院。其间其父母曾到宾老师家打牌，帝君也一同前往，晚上另有饭局先行离开。之后前往上海东方艺术中心听音乐会。</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="when">2026.9.10 – 12<span class="sub">教师节回母校</span></div>
+          <div class="what">
+            <h3 class="tagline">教师节回母校</h3>
+            <p>9 月 10 日教师节，帝君回到高中母校，见到多位老师，添加微信，并发布一篇长篇教师节散文，按学科顺序逐一点名感谢老师。在食堂遇到宾老师但未认出。当晚称次日前往北京，办理出院。9 月 11 日抵京，定位在某高校，准备复学评估。9 月 12 日发布在高校内餐厅的动态。</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------- 重要专题 ---------- -->
+    <section class="block" id="topics">
+      <div class="block-head">
+        <div class="eyebrow">Themes</div>
+        <h2>重要专题</h2>
+      </div>
+
+      <div class="topics">
+
+        <div class="topic">
+          <div class="no">专题 01</div>
+          <h3>对银客的长期执念与越界争议</h3>
+          <p>帝君对银客的执念从高中延续至大学，多次安排同住、同房、同行，包括日本行。据转述，其自述行为包括隔床缝偷偷自慰、偷取内裤、以及“三关”中的其他接触。银客本人未正面确认。</p>
+          <p><strong>高风险争议</strong>：该部分涉及性骚扰与猥亵指控，主要来自帝君在 2026 年 5 月 30 日凌晨通话中的自述、经史官转述，细节真实性存疑，时间线也不统一。顾医认为“三关”可能是编造，但“内裤打”可信。</p>
+        </div>
+
+        <div class="topic">
+          <div class="no">专题 02</div>
+          <h3>对芋泥的表白与“100% 自信”</h3>
+          <p>2026 年 5 月，帝君认识芋泥约一周后，在咖啡馆表白被拒。此后他反复称芋泥喜欢自己、只是“回避型人格”，并认为“芋泥需要他”“芋泥非常孤独”。</p>
+          <p>顾医、罗哥等多认为这是帝君的主观幻想。</p>
+        </div>
+
+        <div class="topic">
+          <div class="no">专题 03</div>
+          <h3>对周郎的投射</h3>
+          <p>帝君称周郎是最理解他的人之一，认为周郎会回消息、会见他，并曾计划专程前往周郎所在城市。周郎多次回避，但帝君仍将其列入“最信任的人”。</p>
+        </div>
+
+        <div class="topic">
+          <div class="no">专题 04</div>
+          <h3>医疗与停药反复</h3>
+          <ul>
+            <li>住院地点：北京、上海多家精神专科医院。</li>
+            <li>治疗：约 10 次无抽搐电击治疗；服用过碳酸锂、丙戊酸钠、喹硫平、劳拉西泮、安非他酮、奥氮平、氯氮平、利培酮、鲁拉西酮、右佐匹克隆等药物。</li>
+            <li>副作用：手抖、流口水、记忆受损、认知抑制、性欲减退、骑自行车不稳。</li>
+            <li>多次自行停药或减药，停药后状态迅速反复。</li>
+          </ul>
+        </div>
+
+        <div class="topic">
+          <div class="no">专题 05</div>
+          <h3>日本与欧洲旅行计划</h3>
+          <ul>
+            <li>2023 年起多次赴日本，足迹包括东京、大阪、名古屋、广岛等。</li>
+            <li>2026 年原计划 8 月再赴日本两周，并参加某展会；因父母不同意，行程落空。</li>
+            <li>另计划年底前往巴黎与斯特拉斯堡，进行游戏取景地巡礼。</li>
+          </ul>
+        </div>
+
+        <div class="topic">
+          <div class="no">专题 06</div>
+          <h3>社交媒体与联系模式</h3>
+          <ul>
+            <li>频繁发布朋友圈、视频号、小红书等，且常带地理定位。</li>
+            <li>向同学、老师、旧识大量点赞、评论、私信、语音通话、拨打座机。</li>
+            <li>使用多个社交账号、通讯录添加、医院固定电话等方式联系他人。</li>
+            <li>线下曾多次到高校宿舍、办公室找人，在校园内游荡。</li>
+            <li>反复自称“世界的中心”“神明”“救世主”“超忆症”“真正的天才”。</li>
+          </ul>
+        </div>
+
+        <div class="topic" style="grid-column:1/-1">
+          <div class="no">专题 07</div>
+          <h3>学业与未来规划</h3>
+          <ul>
+            <li>就读于北京某顶尖高校生物相关方向，已延毕。计划辅修心理学，选修精神病学、初等数论、抽象代数等课程。</li>
+            <li>希望申请公共卫生或心理学博士，或赴日本攻读心理学博士，回上海从事心理咨询。</li>
+            <li>计划在日本千叶购房、接父母过去、办理永久居留。</li>
+            <li>2026 年 9 月中旬预约专家评估复学，截至 9 月 12 日结果未确认。</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------- 当前状态 ---------- -->
+    <section class="block" id="status">
+      <div class="block-head">
+        <div class="eyebrow">Status</div>
+        <h2>当前状态</h2>
+        <p class="note">截至 2026 年 9 月 12 日</p>
+      </div>
+
+      <div class="card">
+        <ul style="margin:0; padding-left:20px">
+          <li>已从上海某精神卫生中心出院，9 月 11 日抵达北京，9 月 12 日在北京某高校活动。</li>
+          <li>已预约专家评估复学，结果未确认。</li>
+          <li>仍处于高输出、高自恋、高幻想状态，自称世界中心、神明、超忆症、真正天才。</li>
+          <li>对银客、芋泥、周郎的执念未消；对日本、巴黎、心理学博士、千叶购房等计划仍在继续。</li>
+          <li>周围同学普遍采取回避、折叠消息、按对方作息点赞、屏蔽朋友圈等策略；少数人仍在与其直接沟通。</li>
+        </ul>
+      </div>
+
+      <div class="pull" style="margin-top:30px">
+        本档案仅基于当事人所在群聊中的公开聊天记录整理，不构成医学、法律或事实认定。文中所有人名、校名、机构名均已用代号或泛称处理。请勿据此对现实中的任何个人作出判断。
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="colophon">
+  外部阅读版 <span class="diamond">◆</span> 已隐去真实姓名与联系方式 <span class="diamond">◆</span> 仅供了解
+</footer>
+
+</body>
+</html>
