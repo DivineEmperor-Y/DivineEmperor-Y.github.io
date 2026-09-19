@@ -1,489 +1,625 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>帝君纪事 · 公开版</title>
-<style>
-  :root{
-    --bg:#0f1115;
-    --panel:#171a21;
-    --panel2:#1e222b;
-    --line:#2a2f3a;
-    --text:#d8dde6;
-    --dim:#8b93a3;
-    --accent:#7c5cff;
-    --accent2:#ff6b81;
-    --gold:#e8b44a;
-    --green:#4ec9a0;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
-    line-height:1.75;
-    font-size:15px;
-  }
-  a{color:var(--accent);text-decoration:none;}
-  a:hover{text-decoration:underline;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帝君事件全景纪实：名校圈的躁狂风暴与“互助会”档案（深度特稿版）</title>
+    <style>
+        :root {
+            --primary-navy: #102a43;
+            --accent-crimson: #9b2c2c;
+            --slate-blue: #2b6cb0;
+            --bg-canvas: #f0f4f8;
+            --bg-paper: #ffffff;
+            --text-dark: #1f2933;
+            --text-sub: #52606d;
+            --border-soft: #d9e2ec;
+            --card-hover: #f8fafc;
+        }
 
-  header{
-    padding:64px 24px 48px;
-    text-align:center;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(124,92,255,.18), transparent 55%),
-      radial-gradient(circle at 80% 10%, rgba(255,107,129,.12), transparent 50%),
-      linear-gradient(180deg,#12151c,#0f1115);
-    border-bottom:1px solid var(--line);
-  }
-  header .kicker{
-    color:var(--dim);
-    letter-spacing:.5em;
-    font-size:12px;
-    text-indent:.5em;
-    margin-bottom:14px;
-  }
-  header h1{
-    margin:0;
-    font-size:clamp(32px,6vw,52px);
-    letter-spacing:.06em;
-    font-family:"Songti SC","SimSun",serif;
-    background:linear-gradient(90deg,#fff,#c9b6ff 45%,#ff9aa8);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
-  header .sub{
-    margin-top:16px;
-    color:var(--dim);
-    font-size:14px;
-    max-width:640px;
-    margin-left:auto;
-    margin-right:auto;
-  }
-  header .tags{margin-top:22px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-  header .tags span{
-    border:1px solid var(--line);
-    background:rgba(255,255,255,.03);
-    padding:4px 12px;
-    border-radius:999px;
-    font-size:12px;
-    color:var(--dim);
-  }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-canvas);
+            color: var(--text-dark);
+            line-height: 1.85;
+            margin: 0;
+            padding: 40px 15px;
+        }
 
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(15,17,21,.92);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-    overflow-x:auto;
-    white-space:nowrap;
-  }
-  nav ul{list-style:none;margin:0;padding:0 16px;display:flex;gap:4px;}
-  nav a{
-    display:block;padding:14px 14px;font-size:13px;color:var(--dim);
-    border-bottom:2px solid transparent;
-  }
-  nav a:hover{color:var(--text);border-bottom-color:var(--accent);text-decoration:none;}
+        .dossier-wrapper {
+            max-width: 1040px;
+            margin: 0 auto;
+            background: var(--bg-paper);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(16, 42, 67, 0.08);
+            border: 1px solid var(--border-soft);
+            overflow: hidden;
+        }
 
-  main{max-width:960px;margin:0 auto;padding:0 20px 120px;}
+        /* 顶部报头 */
+        .masthead {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1e3a5f 100%);
+            color: #ffffff;
+            padding: 50px 60px;
+            position: relative;
+            border-bottom: 4px solid var(--accent-crimson);
+        }
 
-  section{padding-top:64px;}
-  h2{
-    font-family:"Songti SC","SimSun",serif;
-    font-size:26px;
-    letter-spacing:.08em;
-    margin:0 0 8px;
-    padding-bottom:12px;
-    border-bottom:1px solid var(--line);
-    position:relative;
-  }
-  h2::after{
-    content:"";position:absolute;left:0;bottom:-1px;width:64px;height:2px;background:var(--accent);
-  }
-  h3{
-    font-size:16px;margin:32px 0 10px;color:#fff;letter-spacing:.04em;
-  }
-  h3::before{content:"▍";color:var(--accent);margin-right:6px;font-size:13px;}
-  p{margin:10px 0;}
+        .badge-pill {
+            display: inline-block;
+            background-color: var(--accent-crimson);
+            color: #ffffff;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
 
-  .card{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:22px 24px;
-    margin-top:24px;
-  }
-  .profile{display:grid;grid-template-columns:1fr;gap:0;}
-  .profile dl{display:grid;grid-template-columns:96px 1fr;gap:2px 16px;margin:0;}
-  .profile dt{color:var(--dim);font-size:13px;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.06);}
-  .profile dd{margin:0;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.06);font-size:14px;}
-  .profile dd:last-of-type,.profile dt:last-of-type{border-bottom:none;}
+        .masthead h1 {
+            font-size: 2.3rem;
+            line-height: 1.3;
+            margin: 0 0 12px 0;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
 
-  .callout{
-    background:linear-gradient(135deg,rgba(124,92,255,.12),rgba(255,107,129,.08));
-    border-left:3px solid var(--accent);
-    padding:16px 20px;
-    border-radius:0 10px 10px 0;
-    margin:22px 0;
-    font-size:14px;
-    color:#cfd4e0;
-  }
+        .masthead .sub-dek {
+            font-size: 1.1rem;
+            color: #bcccdc;
+            margin: 0;
+            font-weight: 300;
+        }
 
-  .timeline{position:relative;margin-top:28px;padding-left:28px;}
-  .timeline::before{
-    content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;
-    background:linear-gradient(180deg,var(--accent),var(--accent2),transparent);
-  }
-  .stage{margin-bottom:38px;position:relative;}
-  .stage::before{
-    content:"";position:absolute;left:-27px;top:8px;width:11px;height:11px;border-radius:50%;
-    background:var(--bg);border:2px solid var(--accent);
-    box-shadow:0 0 0 4px rgba(124,92,255,.12);
-  }
-  .stage.phase2::before{border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,180,74,.12);}
-  .stage.phase3::before{border-color:var(--accent2);box-shadow:0 0 0 4px rgba(255,107,129,.12);}
-  .stage h4{
-    margin:0 0 4px;font-size:17px;color:#fff;letter-spacing:.03em;
-  }
-  .stage .when{
-    display:inline-block;font-size:12px;color:var(--dim);
-    border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-bottom:12px;
-  }
-  .stage ul{margin:0;padding-left:20px;}
-  .stage li{margin:6px 0;font-size:14px;color:#c3cad6;}
-  .stage li b{color:#fff;font-weight:600;}
+        .article-body {
+            padding: 50px 60px;
+        }
 
-  .quote-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:24px;}
-  .quote{
-    background:var(--panel2);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:16px 18px;
-    font-size:14px;
-    position:relative;
-    transition:.2s;
-  }
-  .quote:hover{border-color:var(--accent);transform:translateY(-2px);}
-  .quote .q{color:#e9ecf3;font-style:italic;}
-  .quote .q::before{content:"“";color:var(--accent);font-size:22px;line-height:0;vertical-align:-6px;margin-right:2px;}
-  .quote .q::after{content:"”";color:var(--accent);font-size:22px;line-height:0;vertical-align:-6px;margin-left:2px;}
-  .quote .note{display:block;margin-top:10px;font-size:12px;color:var(--dim);font-style:normal;}
+        /* 导读框 */
+        .editorial-lead {
+            background: #f8fafc;
+            border-left: 4px solid var(--slate-blue);
+            padding: 22px 26px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+            font-size: 0.96rem;
+            color: #334e68;
+        }
 
-  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:24px;}
-  .term{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:14px 18px;
-  }
-  .term h5{margin:0 0 6px;font-size:15px;color:var(--gold);letter-spacing:.02em;}
-  .term p{margin:0;font-size:13.5px;color:#b9c0cc;}
+        .editorial-lead h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary-navy);
+            font-size: 1.15rem;
+        }
 
-  .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:24px;}
-  .person{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:16px 18px;
-  }
-  .person .name{font-size:15px;color:#fff;font-weight:600;}
-  .person .alias{font-size:12px;color:var(--accent);margin-left:6px;}
-  .person p{margin:8px 0 0;font-size:13px;color:var(--dim);}
+        /* 标题设计 */
+        h2 {
+            color: var(--primary-navy);
+            font-size: 1.55rem;
+            border-bottom: 2px solid var(--border-soft);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-  footer{
-    text-align:center;padding:48px 20px 80px;
-    color:#5a6272;font-size:12.5px;border-top:1px solid var(--line);
-    margin-top:60px;
-  }
-  footer .disc{max-width:640px;margin:0 auto 18px;line-height:1.9;}
-</style>
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background: var(--slate-blue);
+            border-radius: 3px;
+        }
+
+        h3 {
+            color: #243b53;
+            font-size: 1.25rem;
+            margin-top: 30px;
+            margin-bottom: 14px;
+        }
+
+        p {
+            margin: 0 0 18px 0;
+            font-size: 0.98rem;
+            color: var(--text-dark);
+        }
+
+        /* 角色卡片矩阵 */
+        .character-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 16px;
+            margin: 25px 0 35px 0;
+        }
+
+        .char-card {
+            background: #ffffff;
+            border: 1px solid var(--border-soft);
+            border-radius: 8px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: transform 0.15s ease;
+        }
+
+        .char-card:hover {
+            background-color: var(--card-hover);
+            transform: translateY(-2px);
+        }
+
+        .char-name {
+            font-size: 1.12rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .char-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .char-desc {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        /* 案例语录摘录 */
+        .record-box {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 26px 0;
+            position: relative;
+        }
+
+        .record-header {
+            font-weight: 700;
+            color: var(--accent-crimson);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .record-body {
+            font-style: italic;
+            color: #486581;
+            font-size: 0.94rem;
+            line-height: 1.7;
+        }
+
+        .record-meta {
+            margin-top: 10px;
+            font-size: 0.78rem;
+            color: #9fb3c8;
+            text-align: right;
+        }
+
+        /* 纪事轴 */
+        .chronology-flow {
+            position: relative;
+            padding-left: 28px;
+            margin: 30px 0;
+        }
+
+        .chronology-flow::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #cbd5e1;
+        }
+
+        .node-block {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .node-dot {
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: #ffffff;
+            border: 4px solid var(--slate-blue);
+            border-radius: 50%;
+        }
+
+        .node-date {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--slate-blue);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .node-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+
+        .node-desc {
+            font-size: 0.94rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        /* 概念表格 */
+        .dossier-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 24px 0;
+        }
+
+        .dossier-table th, .dossier-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-soft);
+            vertical-align: top;
+        }
+
+        .dossier-table th {
+            background-color: #f0f4f8;
+            color: var(--primary-navy);
+            font-weight: 700;
+        }
+
+        .dossier-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .clinical-alert {
+            background-color: #e6fffa;
+            border-left: 4px solid #319795;
+            padding: 14px 18px;
+            margin: 18px 0;
+            font-size: 0.9rem;
+            color: #234e52;
+            border-radius: 0 6px 6px 0;
+        }
+
+        footer {
+            background: #f8fafc;
+            border-top: 1px solid var(--border-soft);
+            padding: 30px 60px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #829ab1;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="kicker">PUBLIC RECORD</div>
-  <h1>帝君纪事</h1>
-  <p class="sub">一份基于群聊记录的公开版编年史<br>人物已化名，学校、医院、日期等可识别信息均已模糊处理</p>
-  <div class="tags">
-    <span>帝君</span>
-    <span>K皇</span>
-    <span>芋泥</span>
-    <span>公公</span>
-    <span>团长</span>
-    <span>四转天帝境</span>
-  </div>
-</header>
+<div class="dossier-wrapper">
+    <!-- 顶部封面报头 -->
+    <header class="masthead">
+        <div class="badge-pill">特稿调研与病理社会学观察</div>
+        <h1>帝君事件全景纪实</h1>
+        <p class="sub-dek">顶尖名校数理圈的躁狂侵蚀与同窗“互助防御联盟”始末（2026年夏季档案）</p>
+    </header>
 
-<nav>
-  <ul>
-    <li><a href="#profile">人物档案</a></li>
-    <li><a href="#timeline">编年史</a></li>
-    <li><a href="#people">关系网</a></li>
-    <li><a href="#quotes">经典语录</a></li>
-    <li><a href="#terms">群内黑话</a></li>
-  </ul>
-</nav>
+    <div class="article-body">
+        <!-- 导读与背景 -->
+        <section class="editorial-lead">
+            <h3>📑 案件观察员前言</h3>
+            <p>这是一份基于长达数千条绝密社交会话与当事人核实整理而成的**极端心理与人际危机观察报告**。为恪守隐私伦理，所有涉事人员真实姓名、直系亲属、医学专家名衔及精准门牌信息均已进行<b>完全脱敏与记忆化代号置换</b>。</p>
+            <p>案件发生在中国学术层级最高的理科精英圈层内：核心涉事人员全部来自<b>华东某著名示范性高中理科竞赛班</b>，后全数保送或高分考入<b>北京大学（P大）</b>与<b>清华大学（Q大）</b>的基础学科领域（绝大多数为直博研究生）。当同窗中最具艺术与理科天赋的<b>【帝君】</b>因严重的<b>双相情感障碍I型（极重度躁狂伴随夸大妄想与性冲动脱缰）</b>失去自制时，这群年轻学者被迫经历了一场长达数月的防线围捕与情感自救。</p>
+        </section>
 
-<main>
+        <!-- 角色破译谱系 -->
+        <h2>一、 核心角色谱系破译（去字母化代号库）</h2>
+        <p>为摆脱单调冰冷的英文字母代号，方便外部读者形成具象记忆，本案关键人物统一采用具有性格或情境辨识度的专属化名：</p>
 
-<!-- ==================== 档案 ==================== -->
-<section id="profile">
-  <h2>人物档案</h2>
-  <div class="card profile">
-    <dl>
-      <dt>代号</dt><dd>帝君</dd>
-      <dt>身份</dt><dd>上海某知名高中毕业生 · 北京某顶尖高校生物专业本科生（已延毕）</dd>
-      <dt>网络化名</dt><dd>多个二次元风格 ID，常以 Key 社、白色相簿、素晴日等作品角色自况</dd>
-      <dt>群内称号</dt><dd>帝君 · 救世主 · 麻婆豆腐 · 四转天帝（均为群友戏称）</dd>
-      <dt>核心执念</dt><dd>对三名同学长期、反复的情感投射，分别记为 K皇、芋泥、公公</dd>
-      <dt>诊断史</dt><dd>抑郁发作 → 双相情感障碍 → 轻躁狂 → 躁狂，多次住院，接受过电击治疗</dd>
-      <dt>当前状态</dt><dd>反复出入院，自行停药，坚持认为自己没有病，2026 年秋办理复学评估</dd>
-    </dl>
-  </div>
+        <div class="character-matrix">
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【帝君】</span>
+                    <span class="char-tag" style="background:#fed7d7; color:#9b2c2c;">事件震中</span>
+                </div>
+                <div class="char-desc">
+                    <b>Q大生科学院延毕生。</b>自幼展现卓越数学与做题悟性，通晓二次元文化。躁狂发作后自封为“世界的中心”、“救世主”，擅自停药，视一切常人为蝼蚁。
+                </div>
+            </div>
 
-  <div class="callout">
-    <b>一句话概括：</b>一个智商极高、自我评价极度膨胀的年轻人，在经历情感挫折后陷入躁郁循环。
-    他坚信自己是世界的中心、是超越历史天才的存在；而他的同学们则组成了一个非正式的观测群，
-    持续记录他的言行，并试图在他发病时提供最低限度的帮助。
-  </div>
-</section>
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【银K】</span>
+                    <span class="char-tag" style="background:#e9d8fd; color:#6b46c1;">白月光受害者</span>
+                </div>
+                <div class="char-desc">
+                    <b>P大物理学院博士生。</b>容貌清秀、性格内向隐忍的大心脏学者。【帝君】从高中至今的绝对病态执念所在，曾遭遇骇人听闻的跨国深夜越界猥亵。
+                </div>
+            </div>
 
-<!-- ==================== 编年史 ==================== -->
-<section id="timeline">
-  <h2>编年史</h2>
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【顾队长】</span>
+                    <span class="char-tag" style="background:#bee3f8; color:#2c5282;">前线承伤MVP</span>
+                </div>
+                <div class="char-desc">
+                    <b>Q大医学生物直博生、健身硬汉。</b>因专业背景与同校关系，被【帝君】单方面认作“唯一知音”，长期每日单扛数百条发病长语音轰炸。
+                </div>
+            </div>
 
-  <div class="timeline">
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【牢周】</span>
+                    <span class="char-tag">退守深圳</span>
+                </div>
+                <div class="char-desc">
+                    <b>P大物院毕业、赴深研院读博。</b>早期试图以日漫式的语言感化救赎【帝君】，曾通宵熬夜陪聊9小时，最终被偏执吞噬险遭精神反噬。
+                </div>
+            </div>
 
-    <div class="stage">
-      <h4>中学时期 · 觉醒与执念</h4>
-      <span class="when">约 2018 — 2023</span>
-      <ul>
-        <li>在上海某知名中学就读，受一位物理老师影响，开始形成强烈的自我认知，同时出现厌女倾向。</li>
-        <li>高中军训期间，对同班同学 K皇 产生兴趣。K皇 性格内向，帝君自认为看出了对方“成分”。</li>
-        <li>与 K皇 逐渐走近，并策划多人旅行，以“都打音游”为由安排与 K皇 同住双人房。此事后来被帝君本人称为“全是我设计的，但根本看不出来，因为太细腻了”。</li>
-        <li>中学阶段，帝君对同性情感尚处于自我隐瞒状态，对外表现“极其正常”。</li>
-      </ul>
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【逊哥】</span>
+                    <span class="char-tag">冷面史官</span>
+                </div>
+                <div class="char-desc">
+                    <b>P大物理系博士生。</b>逻辑极其严密冷酷，最早识破【帝君】装病出院套路，并撰写首份AI风险评估报告，被称为“反帝先锋”。
+                </div>
+            </div>
+
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【宾老师】</span>
+                    <span class="char-tag">母校前哨</span>
+                </div>
+                <div class="char-desc">
+                    <b>留任母校重点中学的物理教师。</b>【帝君】潜回母校“巡视”时直面风暴的核心防御者，曾冒死在办公室实施文字直播。
+                </div>
+            </div>
+
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【阿甘】</span>
+                    <span class="char-tag">数院对标同窗</span>
+                </div>
+                <div class="char-desc">
+                    <b>P大数院直博生、音游大神。</b>【帝君】在数学领域的假想对标目标，曾被【帝君】于深夜强闯宿舍邀请同住开房。
+                </div>
+            </div>
+
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【求真神童】</span>
+                    <span class="char-tag">无辜卷入者</span>
+                </div>
+                <div class="char-desc">
+                    <b>Q大数学领军计划神童。</b>2026年5月被处于躁狂巅峰的【帝君】单方面选定为“命中伴侣”并遭围追堵截，被迫彻底闭麦隐身。
+                </div>
+            </div>
+
+            <div class="char-card">
+                <div class="char-name">
+                    <span>【老杨夫妇】</span>
+                    <span class="char-tag" style="background:#feebc8; color:#7b341e;">绝望照护者</span>
+                </div>
+                <div class="char-desc">
+                    <b>【帝君】之父母，建筑名校高知。</b>耗费巨资为儿治病并贴身看护，却屡遭【帝君】在录音中辱骂为“严重强迫症、全员精神病”。
+                </div>
+            </div>
+        </div>
+
+        <!-- 编年史四幕剧 -->
+        <h2>二、 编年灾变：由抑郁走向狂暴四转（2026年夏季纪事）</h2>
+
+        <div class="chronology-flow">
+            <!-- 序幕 -->
+            <div class="node-block">
+                <div class="node-dot"></div>
+                <div class="node-date">序幕 · 2023至2025年</div>
+                <div class="node-title">暗涌潜伏：东京之夜与科研受挫休学</div>
+                <p class="node-desc">
+                    【帝君】早在高中阶段便在心理教师与二次元亚文化引导下释放同性倾向。2024年6月，【帝君】向【银K】试探告白失败。同年秋季，因其所主导的生物计算（AI4Science）研究彻底陷入死胡同，诱发重度内源性抑郁症，自感大脑宕机无法思考，于Q大办理为期一年的休学。在此期间，其生理冲动与人际活动陷入冰封。
+                </p>
+            </div>
+
+            <!-- 第一幕 -->
+            <div class="node-block">
+                <div class="node-dot"></div>
+                <div class="node-date">第一幕 · 2026年5月下旬至6月初</div>
+                <div class="node-title">躁狂喷涌：五·三一“夺门之变”与海淀120强制送医</div>
+                <p class="node-desc">
+                    2026年5月，【帝君】自行停止服用碳酸锂等心境稳定剂，病情从深渊抑郁极速弹射至<b>爆发性躁狂（Mania）</b>。他单方面认定【求真神童】与其灵魂绑定，遭对方冷处理后陷入歇斯底里。
+                    <br>• <b>5月30日夜：</b>【帝君】连线【牢周】进行长达9小时的跨夜狂躁语音通话。
+                    <br>• <b>5月31日晨（夺门之变）：</b>未曾合眼的【帝君】强行闯入P大某研究生宿舍楼，挨门拍门搜寻同窗，声称“所有人都是该埋掉的傻逼”。
+                    <br>• <b>6月2日：</b>【帝君】订票企图孤身赴日圣地自杀，父母被迫拨打120，救护车在海淀将其强行束缚，送入<b>北京安定医院精神科</b>封闭治疗。
+                </p>
+            </div>
+
+            <!-- 第二幕 -->
+            <div class="node-block">
+                <div class="node-dot"></div>
+                <div class="node-date">第二幕 · 2026年6月中旬至7月中旬</div>
+                <div class="node-title">装病脱困：毕业典礼游荡、漫展冲卡与二进精卫</div>
+                <p class="node-desc">
+                    在安定医院，【帝君】熟知量表运作机制，强行伪装出“情绪稳定”的正常人假象，于6月下旬被接出院。然而回归社会后其行为变本加厉：
+                    <br>• <b>强闯毕业季：</b>购入清华学士服游荡于P大周边，向昔日同窗密集群发酒店开房邀约（“我已开好双床房，房费我出，随便来个做爱”）。
+                    <br>• <b>“7·20世界末日论”：</b>受猎奇文字冒险游戏《素晴日》浸染，坚称7月20日为终之空，全校学生应当随其在天台“回归天空”。
+                    <br>• <b>漫展冲突与二度入院：</b>7月11日，在上海大型漫展强行冲闯闸机通道4次，被民警抓扣进派出所。7月13日夜在高铁车厢狂暴，父母二次拨打120将其送入<b>上海市精神卫生中心（闵行院区）</b>。
+                </p>
+            </div>
+
+            <!-- 第三幕 -->
+            <div class="node-block">
+                <div class="node-dot"></div>
+                <div class="node-date">第三幕 · 2026年7月下旬至8月</div>
+                <div class="node-title">十次无抽搐电休克（MECT）与“天帝境”觉醒</div>
+                <p class="node-desc">
+                    为避免儿子在封闭普通病房受罪，【老杨夫妇】自费高昂费用为其安排了VIP单间陪护病房。在此期间，【帝君】接受了高达10次的无抽搐电休克（MECT）治疗：
+                </p>
+                <div class="clinical-alert">
+                    <b>🧠 临床病理学切片：</b>MECT利用微弱电流诱发中枢癫痫样放电，能快速压制重度自残倾向，但伴随不可逆记忆断层与近期定向力受损。
+                </div>
+                <p class="node-desc">
+                    脑部通电未能抑制妄想，反而使其自我认知彻底神格化：他自封为“脑健康中心主任”，声称精神科医师全由其亲自指导；执意撰写了一份自恋到极致的《个人传记》，扬言“伽罗瓦不过是早生了几百年”，并频频对外部受害者施展“我看到你了”的跨时空幻觉索敌。
+                </p>
+            </div>
+
+            <!-- 第四幕 -->
+            <div class="node-block">
+                <div class="node-dot"></div>
+                <div class="node-date">第四幕 · 2026年9月</div>
+                <div class="node-title">教师节潜回母校大点兵与清华复学评估</div>
+                <p class="node-desc">
+                    8月底获准办理出院后，【帝君】再度将处方药物全数弃置。9月10日教师节，他突袭母校重点中学，围堵正在任教的【宾老师】与昔日语文教师，在网络发布万字名单。随后，他坐上一等座启程进京，自称将于9月14日与安定医院专家及清华学生处就复学展开决战。
+                </p>
+            </div>
+        </div>
+
+        <!-- 病理机制深度解构 -->
+        <h2>三、 病态思维解构：“帝君体系”的认知错位</h2>
+        <p>精神科临床通常将双相I型躁狂伴随的精神病性症状定义为现实检验能力的瓦解。在【帝君】的对话日志中，可以提炼出其高度自洽却完全反常识的五大病理回路：</p>
+
+        <div class="dossier-table-wrapper">
+            <table class="dossier-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">病理特征</th>
+                        <th style="width: 35%;">【帝君】的荒谬自白（外显）</th>
+                        <th style="width: 40%;">真实临床机制剖析</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>“无双”伪论<br>（性冲动失控）</b></td>
+                        <td>“我是无浪漫主义双性恋（无双），纯友谊跟做爱没区别。如果我以死相逼，你们肯定愿意帮我口。”</td>
+                        <td>双相躁狂期的<b>性欲亢进（Hypersexuality）与去抑制化</b>。他将赤裸的反社会性骚扰用酷儿理论重新包装，借此合理化对同窗的边界践踏。</td>
+                    </tr>
+                    <tr>
+                        <td><b>回避型归因<br>（防御性闭环）</b></td>
+                        <td>“他不回我消息就是性格害羞的回避型依恋，本质极度爱我；他回了消息，就证明我说得全对。”</td>
+                        <td><b>不可证伪的自恋防御闭环</b>。完全无法耐受“被同龄人厌恶并拒绝”的真实心理挫折，强行将冷漠反向解读为深情。</td>
+                    </tr>
+                    <tr>
+                        <td><b>神格化夸大妄想<br>（Megalomaniac）</b></td>
+                        <td>“我生来就懂高等代数，世界上只有清华是第一，哈佛MIT是屎，丘成桐肯定认识我。”</td>
+                        <td><b>全能感（Grandiosity）膨胀</b>。在学业严重休学的深层现实病耻感刺激下，大脑通过极端自尊补偿制造出“宇宙中心”的虚假神话。</td>
+                    </tr>
+                    <tr>
+                        <td><b>全知关系妄想<br>（超感知幻视）</b></td>
+                        <td>“我看到你了，你在C楼买水吧”、“我就在窗外看着你呢”。</td>
+                        <td>由于睡眠极度匮乏叠加脑功能紊乱导致的<b>轻度视听幻觉与虚构症</b>。将其随机拼凑的信息赋予神秘学的威慑意义。</td>
+                    </tr>
+                    <tr>
+                        <td><b>药理知识逆向利用</b></td>
+                        <td>“我是学医的，我才是专家。碳酸锂和喹硫平会毒害我的脑子，必须全停。”</td>
+                        <td><b>受教育程度过高带来的反常阻抗</b>。将基础生化代谢知识断章取义，成为对抗精神科临床监控的盾牌。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 原始档案引证 -->
+        <h2>四、 原始档案切片：典型交互录音转译</h2>
+
+        <div class="record-box">
+            <div class="record-header">🚨 档案切片 A：首次被拘送精神卫生专科前夕的言论自白</div>
+            <div class="record-body">
+                “我现在就在120急救车上，他们真的觉得我要自杀，但你们也知道，我不会自杀……反正我不说了，今晚我肯定去日本。我真的有自信跟【纯洁周】谈一辈子啊……不说了，再说我爸又觉得我要自杀了。”
+            </div>
+            <div class="record-meta">记录于 2026年6月2日 | 首次送医安定医院途中单向发送</div>
+        </div>
+
+        <div class="record-box">
+            <div class="record-header">🚨 档案切片 B：突袭P大宿舍楼未果后的群体毁灭言论</div>
+            <div class="record-body">
+                “那我就问你，他们到底起没起来现在？！……那我他妈都说到这份上了，你都不回信息吗？那你要么就是真的觉得我很喜欢你，要么就是你觉得我就是个傻逼……哎，我真懒得喷了，反正都他妈去死吧，全他妈是傻逼，全该埋了！”
+            </div>
+            <div class="record-meta">记录于 2026年5月31日晨 | 清晨突袭北大45甲宿舍遭集体闭门冷落后发泄</div>
+        </div>
+
+        <div class="record-box">
+            <div class="record-header">🚨 档案切片 C：漫展冲突由父亲接出后的无差别贬损</div>
+            <div class="record-body">
+                “靠，我爸真的是疯了，我觉得他有病，一遍遍地跟我说外面不能走……不是他是不是有病？你们觉得他是不是严重强迫症？他不容易个毛线！他当年也是名校建筑系毕业，这种高学历人才为什么不能理解我呢？读佛经都读不明白什么叫死了就是活了。”
+            </div>
+            <div class="record-meta">记录于 2026年7月11日夜 | 在派出所领回乘车途中对父亲的残酷控诉</div>
+        </div>
+
+        <!-- 互助会的社会学机制 -->
+        <h2>五、 社群自救机制：“互助会”的防御与反刍</h2>
+        <p>在这场旷日持久的群体精神危机中，面对昔日同窗演化成的现实威胁源，这群青年博士展现了一套独特的自保社会学：</p>
+
+        <h3>1. 战术性虚构与“地缘避险”</h3>
+        <p>为了在不彻底撕破脸皮激化其自残行为的前提下规避【帝君】的线下面基，受害者建立了<b>“伪造行程库”</b>：【顾队长】长期对外声称“已被公派至洛杉矶交流”；驻京成员则统一宣称“人在昌平封闭基地开会”、“全天密闭组会”，以此建立时空假象防御。</p>
+
+        <h3>2. 用荒诞戏谑消解恐惧创伤</h3>
+        <p>【帝君】曾利用同宿机会，趁【银K】熟睡时实施过极端恶劣的体液接触猥亵（群内隐晦代称为“单缝衍射”或“过三关”）。这种原本触目惊心的侵犯，在精英同窗群体中引发了巨大的病理不适与法律困惑。他们没有直接报警（出于同窗旧情与照顾其脆弱家庭），而是通过在群聊内<b>“高度密集造梗”、“修仙境界解构”</b>，用黑色幽默消解了内心的耻感与恐惧。</p>
+
+        <h3>3. 高知照护者的终极困局</h3>
+        <p>档案中最令人唏嘘的是【老杨夫妇】。作为社会精英家庭，面对成年后法律上完全独立、智商极高能够背诵量表、却在精神深处全面脱轨的独生子，常规的家庭伦理已经彻底失灵。从上百万的治疗与陪护消耗，到随时承受亲生骨肉的逆向污蔑与人身要挟，展现了现代家庭在面对重度情感障碍时无法承受之重。</p>
+
+        <!-- 黑话词典 -->
+        <h2>六、 核心黑话与意象速查表</h2>
+        <table class="dossier-table">
+            <thead>
+                <tr>
+                    <th>代号意象</th>
+                    <th>表面出处</th>
+                    <th>实际病理指代</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>980 / 巨物寿司</b></td>
+                    <td>三里屯某高档日料单人放题消费标准。</td>
+                    <td>被同窗设定的<b>狂躁期法定货币（1巨 = 980元）</b>。指代【帝君】躁狂期毫无度量的挥霍与请客欲望。</td>
+                </tr>
+                <tr>
+                    <td><b>过三关 / 单缝衍射</b></td>
+                    <td>物理波动光学实验概念的恶趣味假借。</td>
+                    <td>指代【帝君】在早前日本行期间，趁【银K】沉睡实施的<b>非自愿性猥亵行为</b>，为避免恶心创伤而在群内使用的隐语。</td>
+                </tr>
+                <tr>
+                    <td><b>劳拉西泮睡饱饱</b></td>
+                    <td>一种临床强效苯二氮䓬类镇静药物。</td>
+                    <td>群友面对【帝君】失控高频输出时的祈祷语。唯有【帝君】在药物麻痹下昏睡，世界才能享有片刻安宁。</td>
+                </tr>
+                <tr>
+                    <td><b>720 终之空</b></td>
+                    <td>日本成人哲学猎奇游戏《素晴日》设定。</td>
+                    <td>【帝君】坚信的世界末日节点（7月20日）。他将其自杀倾向哲学化，宣扬“回归天空”。</td>
+                </tr>
+                <tr>
+                    <td><b>商务座就是无座</b></td>
+                    <td>高铁票务乘车术语。</td>
+                    <td>【帝君】在票额紧张时现场随意加购千元商务座并侮辱父亲节俭习惯的狂妄自白，反映出金钱观念的彻底崩塌。</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
-    <div class="stage phase2">
-      <h4>大一至大二 · 表白与抑郁</h4>
-      <span class="when">约 2023 — 2025</span>
-      <ul>
-        <li>某年 6 月前后，帝君隐晦试探 K皇“你怎么看我”，K皇 直接反问“你是不是喜欢我”。帝君随即表白，被拒。</li>
-        <li>同年暑假，帝君仍与 K皇 等人同赴日本旅行。K皇 出于巡礼目的同行，帝君未放弃幻想。</li>
-        <li>大二下学期，帝君开始对 K皇 进行持续骚扰，K皇 逐渐回避。帝君随后向 K皇 正式坦白，再次被拒。</li>
-        <li>大三上学期，帝君确诊抑郁，休学约一年。对外宣称原因是科研受挫；同学普遍认为情感问题是主因。</li>
-        <li>抑郁期间，帝君几乎不与外界联系，处于沉寂状态。</li>
-      </ul>
-    </div>
-
-    <div class="stage">
-      <h4>大三下 · 躁狂前夜</h4>
-      <span class="when">约 2025 年底 — 2026 年春</span>
-      <ul>
-        <li>复学后，帝君对另一名同学 芋泥 产生强烈执念。芋泥 与帝君仅有一面之缘，帝君却坚信对方“100% 喜欢我”。</li>
-        <li>帝君开始高强度水群、通宵游戏、高额消费、频繁赴日旅行，并大量购买二次元周边与服装。</li>
-        <li>帝君向 芋泥 发送大量消息，芋泥 始终未回应。帝君将 芋泥 的沉默解释为“回避型人格”。</li>
-        <li>帝君同时向群友反复宣称自己“已经痊愈”，并自行减少药量。</li>
-      </ul>
-    </div>
-
-    <div class="stage phase3">
-      <h4>躁狂发作 · 第一次住院</h4>
-      <span class="when">某年 5 月底 — 6 月</span>
-      <ul>
-        <li>5 月底，帝君深夜召集数名同学语音通话，通宵商议“是否向 芋泥 表白”。凌晨 5 点结束。</li>
-        <li>次日清晨，帝君要求群友开门让其进入某高校宿舍楼，未果。中午与 芋泥 见面，表白被拒。</li>
-        <li>几天后，帝君被家长与 120 送往精神专科医院，正式住院。群内“互助会”由此成立。</li>
-        <li>住院期间手机被没收，帝君偶尔通过座机或病友手机对外联络。</li>
-        <li>约三周后出院，帝君开始每日向群友发送大量消息，单日最高近千条。</li>
-      </ul>
-    </div>
-
-    <div class="stage phase3">
-      <h4>躁狂巅峰 · 反复入院</h4>
-      <span class="when">某年 6 月 — 9 月</span>
-      <ul>
-        <li>帝君穿着高中校服参加漫展，自述“地铁上所有人都认识我”。</li>
-        <li>因闯入园区被强制带离，进派出所吹空调一小时；同日闯卡四次。</li>
-        <li>帝君宣布“某月某日是世界末日”，并引用某游戏中的“终之空”“黑波动”等概念。当日实际无事发生。</li>
-        <li>帝君被父母送往精神卫生中心，接受约十次电击治疗（MECT）。自述副作用为记忆丧失。</li>
-        <li>此后数月，帝君反复出院、入院，坚持自行停药，并多次往返北京与上海，试图寻找 芋泥 与 公公。</li>
-        <li>帝君在住院期间仍通过手机高强度输出，内容涵盖数学、哲学、二次元、股票、日语等。</li>
-      </ul>
-    </div>
-
-    <div class="stage phase2">
-      <h4>近期 · 复学评估</h4>
-      <span class="when">某年 9 月</span>
-      <ul>
-        <li>帝君办理请假出院，回高中参加教师节活动，与多位老师“大聊特聊”，并发布点名感谢三十余位老师的超长朋友圈。</li>
-        <li>帝君抵达北京，出现在某顶尖高校附近，离群友工位不到一千米。</li>
-        <li>帝君预约精神专科医院院长进行复学评估，自称“能复学”。</li>
-        <li>群友普遍认为其状态仍不稳定，但已无法阻止。</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<!-- ==================== 关系网 ==================== -->
-<section id="people">
-  <h2>关系网</h2>
-  <div class="people">
-
-    <div class="person">
-      <div class="name">K皇<span class="alias">高中同学</span></div>
-      <p>帝君最早、最持久的暗恋对象。被帝君称为“完美符合我的审美”。高中起被长期纠缠，大学后彻底回避。帝君曾策划与其同住、同游，并在表白被拒后陷入抑郁。</p>
-    </div>
-
-    <div class="person">
-      <div class="name">芋泥<span class="alias">大学期间对象</span></div>
-      <p>帝君在某次活动中“赛博一见钟情”的对象。帝君坚信对方喜欢自己，反复发送消息，对方从未回应。帝君将其定义为“回避型人格”，并在群内反复提及。</p>
-    </div>
-
-    <div class="person">
-      <div class="name">公公<span class="alias">后期精神寄托</span></div>
-      <p>帝君在躁狂后期认定的“最理解我的人”。帝君多次试图约见，对方全程打太极，成功回避几乎所有邀约。帝君在住院期间仍不断提及 公公。</p>
-    </div>
-
-    <div class="person">
-      <div class="name">团长<span class="alias">调查兵团团长</span></div>
-      <p>帝君的同学，群聊的创建者。自帝君发病起承担“正面战场”，累计接收帝君私聊消息数千条。后赴美交流，被群友戏称为“金蝉脱壳”。</p>
-    </div>
-
-    <div class="person">
-      <div class="name">群友<span class="alias">互助会</span></div>
-      <p>由帝君的同学、朋友组成的非正式观测群。成员轮流记录帝君的言行、接听电话、整理时间线。群内自嘲为“调查兵团”，口号“献出心脏”。</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ==================== 语录 ==================== -->
-<section id="quotes">
-  <h2>经典语录</h2>
-  <div class="quote-grid">
-
-    <div class="quote">
-      <div class="q">你懂的啊</div>
-      <span class="note">帝君最高频口头禅，几乎可用于任何对话场景。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">我说白了，伽罗瓦是天才，只是因为他太早发现了那些东西。</div>
-      <span class="note">帝君对自身数学水平的经典评价，也常套用于其他领域。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">我看到了你了。</div>
-      <span class="note">帝君在躁狂期的高频句式，地理上不成立，心理上极具压迫感。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">这里都是人类。</div>
-      <span class="note">帝君在飞往某地的航班厕所里发出的消息。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">某月某日是世界末日，终之空，回归天空。</div>
-      <span class="note">帝君引用某游戏中的末世概念，当日实际无事发生。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">我生来就知道阿根廷进了。</div>
-      <span class="note">帝君对自身预测能力的自信，也是群内“救世主”称号的来源。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">我觉得我就是史铁生啊。</div>
-      <span class="note">帝君在教师节回到高中，对一位老师所说。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">那是因为有我在。</div>
-      <span class="note">当老师提到帝君家附近发展很好时，帝君的回应。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">相遇就是缘分，这些都是我创造的啊，我就是神明。</div>
-      <span class="note">同一场对话。旁边的老师评价：“他可以去当诗人。”</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">世界的意义在世界之外；对不可言说之物，我们必须保持沉默。</div>
-      <span class="note">维特根斯坦《逻辑哲学论》最后一句。帝君常引用。</span>
-    </div>
-
-    <div class="quote">
-      <div class="q">我感觉我身边接触的人都这样了。</div>
-      <span class="note">帝君对自身状态的判断，群友认为他说的其实是自己。</span>
-    </div>
-
-  </div>
-</section>
-
-<!-- ==================== 术语 ==================== -->
-<section id="terms">
-  <h2>群内黑话</h2>
-  <div class="terms">
-
-    <div class="term">
-      <h5>无双</h5>
-      <p>帝君自创的性取向标签，指“双性恋 + 无浪漫主义”。后被群友泛化为形容词，凡情感混乱、行为抽象者皆可称“无双”。</p>
-    </div>
-
-    <div class="term">
-      <h5>过三关</h5>
-      <p>群内对帝君与 K皇 之间一段私密历史的戏称。具体细节在群内长期存在真伪争议，公开版不予展开。</p>
-    </div>
-
-    <div class="term">
-      <h5>黑波动</h5>
-      <p>源自某游戏，指世界毁灭的源头。群友用来指代帝君本人及其不可预测的行为。帝君曾将某日定为“黑波动之日”。</p>
-    </div>
-
-    <div class="term">
-      <h5>巨物寿司</h5>
-      <p>帝君最爱的昂贵自助寿司，后成为群内货币单位（1 巨 ≈ 980 元）。</p>
-    </div>
-
-    <div class="term">
-      <h5>夺门之变</h5>
-      <p>帝君曾在清晨要求群友开门让其进入某高校宿舍楼，未果。群友以明朝“夺门之变”戏称此事。</p>
-    </div>
-
-    <div class="term">
-      <h5>调查兵团</h5>
-      <p>群内自嘲称号，指自愿记录帝君言行、整理时间线的群友。团长为群主，副团长为一位高中教师。</p>
-    </div>
-
-    <div class="term">
-      <h5>力竭</h5>
-      <p>与帝君长时间对话后耗尽精力的状态，常与“token 用完了”连用。</p>
-    </div>
-
-    <div class="term">
-      <h5>四转天帝境</h5>
-      <p>群友对帝君当前状态的戏称。一阶段=抑郁，二阶段=躁狂前夜，三阶段=住院，四转=反复出入院后的稳定躁狂。</p>
-    </div>
-
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <p class="disc">
-    本记录基于群聊内容整理，所有人物均为化名，学校、医院、日期等可识别信息已做模糊处理。<br>
-    内容仅用于理解事件脉络，不构成医学诊断，也不代表当事人立场。<br>
-    请尊重当事人隐私，勿对号入座，勿二次传播。
-  </p>
-  <p>公开版 · 最后更新于 2026 年 9 月</p>
-</footer>
+    <!-- 底部注脚 -->
+    <footer>
+        <p>本文件系基于群聊公开留存文本进行之学术与社会学个案整理 · 全文已实施深度去标识化（De-identified）脱敏处理</p>
+        <p>“面对崩塌的世界，我们以荒诞抵御恐惧，以沉默守望归途。”</p>
+    </footer>
+</div>
 
 </body>
 </html>
